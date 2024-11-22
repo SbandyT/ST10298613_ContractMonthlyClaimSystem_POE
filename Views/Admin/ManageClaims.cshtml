@@ -1,0 +1,44 @@
+﻿@model dynamic // Adjust this based on the type you're passing, e.g., IEnumerable<CustomClaimViewModel>
+
+    <h2>Manage Claims</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Claim ID</th>
+                <th>Lecturer Name</th>
+                <th>Status</th>
+                <th>Hours Worked</th>
+                <th>Hourly Rate</th>
+                <th>Total Payment</th>
+                <th>Document</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var claim in Model)
+        {
+                <tr>
+                    <td>@claim.Id</td>
+                    <td>@claim.LecturerName</td>
+                    <td>@claim.Status</td>
+                    <td>@claim.HoursWorked</td>
+                    <td>@claim.HourlyRate.ToString("C")</td> <!-- Display currency format -->
+                    <td>@claim.TotalPayment.ToString("C")</td> <!-- Display calculated TotalPayment -->
+                    <td>
+                    @if (!string.IsNullOrEmpty(claim.DocumentPath))
+                    {
+                            <a href="@Url.Content(claim.DocumentPath)" target="_blank">Download</a>
+                    }
+                    else
+                    {
+                            <span>No Document</span>
+                    }
+                    </td>
+                    <td>
+                        <a href="/Admin/Approve/@claim.Id" class="btn btn-success">Approve</a>
+                        <a href="/Admin/Reject/@claim.Id" class="btn btn-danger">Reject</a>
+                    </td>
+                </tr>
+        }
+        </tbody>
+    </table>

@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+<h1>Admin Dashboard</h1>
+<div class="container">
+    <h3>Claim Summary</h3>
+    <canvas id="claimsChart" width="400" height="200"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('claimsChart').getContext('2d');
+        const claimsChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Pending', 'Approved', 'Rejected'],
+                datasets: [{
+                    label: '# of Claims',
+                    data: [10, 5, 2], // Replace with backend data
+                    backgroundColor: ['rgba(75, 192, 192, 0.2)'],
+                    borderColor: ['rgba(75, 192, 192, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+    </script>
+</div>
+
+

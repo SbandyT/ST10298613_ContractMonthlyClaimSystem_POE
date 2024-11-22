@@ -1,0 +1,35 @@
+﻿
+<form asp-action="SubmitClaim" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="LecturerName" class="form-label">Lecturer Name</label>
+        <input type="text" class="form-control" id="LecturerName" name="LecturerName" required />
+    </div>
+    <div class="mb-3">
+        <label for="HoursWorked" class="form-label">Hours Worked</label>
+        <input type="number" id="HoursWorked" name="HoursWorked" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label for="HourlyRate" class="form-label">Hourly Rate</label>
+        <input type="number" id="HourlyRate" name="HourlyRate" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label for="TotalAmount" class="form-label">Total Amount</label>
+        <input type="text" id="TotalAmount" name="TotalAmount" class="form-control" readonly />
+    </div>
+    <div class="mb-3">
+        <label for="supportingDocument" class="form-label">Upload Supporting Document</label>
+        <input type="file" class="form-control" id="supportingDocument" name="DocumentPath" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit Claim</button>
+</form>
+
+<script>
+    document.getElementById("HoursWorked").addEventListener("input", calculateTotal);
+    document.getElementById("HourlyRate").addEventListener("input", calculateTotal);
+
+    function calculateTotal() {
+        const hours = parseFloat(document.getElementById("HoursWorked").value) || 0;
+        const rate = parseFloat(document.getElementById("HourlyRate").value) || 0;
+        document.getElementById("TotalAmount").value = (hours * rate).toFixed(2);
+    }
+</script>

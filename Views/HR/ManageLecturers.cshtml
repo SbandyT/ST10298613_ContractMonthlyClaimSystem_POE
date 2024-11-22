@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Lecturer>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Lecturer Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var lecturer in Model)
+        {
+            <tr>
+                <td>@lecturer.LecturerName</td>
+                <td>
+                    <a href="/HR/EditLecturer/@lecturer.LecturerName" class="btn btn-primary">Edit</a>
+                    <a href="/HR/DeleteLecturer/@lecturer.LecturerName" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
